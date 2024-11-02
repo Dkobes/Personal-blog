@@ -15,7 +15,5 @@ if (!renderBlogList) {
 return renderBlogList; 
 }
 // TODO: Call the `renderBlogList` function
-renderBlogList() {
-
-}
+renderBlogList()
 // TODO: Redirect to the home page using the `redirectPage` function found in logic.js when the back button is clicked
