@@ -2,27 +2,26 @@
 const toggleButton = document.getElementById('toggle');
 const body = document.body;
 
+function applyTheme(theme) {
+  body.classList.remove('light','dark');
+  body.classList.add(theme);
+  toggleButton.textContent = theme === 'dark' ? '🌙' : '☀️';
+}
+
 const currentTheme = localStorage.getItem('theme');
 
 if (currentTheme) {
-  body.classList.add(currentTheme);
-  toggleButton.textContent = currentTheme === 'dark' ? '🌙' : '☀️';
+  applyTheme(currentTheme); //Apply saved theme
 } else {
-  body.classList.add('light');
-  toggleButton.textContent = '☀️';
+  applyTheme('light'); //Default to light mode
 }
 
 toggleButton.addEventListener('click', () => {
-  body.classList.toggle('dark');
-  body.classList.toggle('light');
+  const newTheme = body.classList.contains('dark') ? 'light' : 'dark'; //Determine new theme
+  applyTheme(newTheme);
 
-  if (body.classList.contains('dark')) {
-    toggleButton.textContent = '🌙';
-  } else {
-    toggleButton.textContent = '☀️';
-  }
+  localStorage.setItem('theme', newTheme);
 })
-
 // TODO: Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array.
 
 
