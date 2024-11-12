@@ -1,36 +1,32 @@
 // TODO: Create logic to toggle the light/dark mode styles for the page and circle. The mode should be saved to local storage.
 const toggleButton = document.getElementById('toggle');
 const body = document.body;
-
-function applyTheme(theme) {
-  body.classList.remove('light','dark');
-  body.classList.add(theme);
-  toggleButton.textContent = theme === 'dark' ? '🌙' : '☀️';
-}
-
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
-  applyTheme(currentTheme); //Apply saved theme
-} else {
-  applyTheme('light'); //Default to light mode
-}
+const toggleSwitch = document.querySelector('.toggle-switch');
 
 toggleButton.addEventListener('click', () => {
-  const newTheme = body.classList.contains('dark') ? 'light' : 'dark'; //Determine new theme
-  applyTheme(newTheme);
+    body.classList.toggle('dark-mode');
 
-  localStorage.setItem('theme', newTheme);
-})
+    // Update the circle color based on the mode
+    if (body.classList.contains('dark-mode')) {
+        toggleSwitch.style.backgroundColor = 'black'; // Dark mode circle color
+    } else {
+        toggleSwitch.style.backgroundColor = 'white'; // Light mode circle color
+    }
+});
 // TODO: Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array.
 
+function readLocalStorage(key) {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : [];
+}
 
-//console.log(readLocalStorage())
 // TODO: Create a function called `storeLocalStorage` that takes a given object and saves the new data to the existing blog data in local storage.
 
+function storeLocalStorage(key, value) {
+  const jsonString = JSON.stringify(value);
+  localStorage.setItem(key, jsonString);
+}
 
-//storeLocalStorage(true)
-//console.log(readLocalStorage())
 // ! Use the following function whenever you need to redirect to a different page
 
 let redirectURL = '';
