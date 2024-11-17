@@ -23,6 +23,7 @@ window.onload = function() {
         body.classList.add('dark-mode'); // Apply dark mode
         toggleButton.textContent = '🌙'; // Set icon to moon
     } else {
+        body.classList.remove('dark-mode');
         toggleButton.textContent = '☀️'; // Set icon to sun
     }
 };
